@@ -1,0 +1,541 @@
+<?php 
+
+
+
+?>
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--FONT-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+
+</head>
+
+
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: var(--font);
+    }
+
+    :root{
+        --background: #477be1;
+        --background2: #477be1;
+        --corsystem: #00223c;
+        --cinzaforlar: #9ea6b5ff;
+        --font: "Parkinsans", sans-serif;
+    }
+
+
+
+    .box-shadow{
+        background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
+        position: fixed;
+        z-index: -1;
+        width: 100vw;
+        height: 100vh;
+        left: 0;
+        top: 0;
+    }
+
+    .menu-forlar{
+        position: static;
+        top: 0;
+        left: 0;
+        height: calc(100vh - 10px);
+        width: 400px;
+        transition: all 0.5s ease;
+        /* background: #FFFFFFdb; */
+        backdrop-filter: 4px;
+        border-radius: 0 10px 10px 0;
+        padding: 10px 10px;
+        margin: 5px;
+        box-sizing: border-box;
+        box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.3);
+        backdrop-filter: blur(3px);
+        border-right: 2px solid #477be1;
+        border-top: 2px solid #477be1;
+        animation: scaleIn 1s forwards;
+        margin-top: -100px;
+        /* position: relative; */
+        /* overflow: hidden; */
+    } 
+        
+
+    .menu-forlar.fechar{
+        width: 78px;
+    }
+
+    .menu-forlar .logo-detalhes{
+        margin-top: 10px;
+        margin-left: 5px;
+        height: 60px;
+        width: 90%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        
+    }
+
+    .menu-forlar.fechar .logo-detalhes{
+        overflow: hidden;
+        width: 30%;
+        margin-left: 30px;
+        border: none;
+        display: none;
+    }
+
+    .menu-forlar .logo-detalhes img{
+        height: 200px;
+        min-width: 78px;
+    }
+
+    .menu-forlar .menu-links{
+        /* height: 100%; */
+        /* padding: 30px 0 150px 0; */
+        overflow: auto;
+        padding-top: 20px;
+        max-height: 730px;
+    }
+
+    .menu-forlar.fechar .menu-links{
+        overflow: visible;
+        margin-top: 50px;
+    }
+
+    .menu-forlar .menu-links::webkit-scrollbar{
+        display: none;
+    }
+
+    .menu-forlar .menu-links li{
+        position: relative;
+        list-style: none;
+        transition: all 0.4s ease;
+        margin-top: 10px;
+        cursor: pointer;
+    }
+
+    /* .menu-forlar .menu-links li:hover{
+        background: var(--background2);
+    } */
+
+    .menu-forlar .menu-links li .div-conteudo-seta{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .menu-forlar.fechar .menu-links li .div-conteudo-seta{
+        display: block;
+    }
+
+    .menu-forlar .menu-links li i{
+        height: 50px;
+        min-width: 60px;
+        text-align: center;
+        line-height: 50px;
+        color: var(--background);
+        font-size: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .menu-forlar .menu-links li.mostrarMenu i.seta{
+        transform: rotate(-180deg); /* vira seta pra cima */
+    }
+
+    .menu-forlar.fechar .menu-links i.seta{
+        display: none;
+    }
+
+    .menu-forlar .menu-links li a{
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+    }
+
+    .menu-forlar .menu-links li a .nome-link{
+        font-size: 18px;
+        font-weight: 400;
+        color: var(--background2);
+    }
+
+    .menu-forlar .menu-links li a .nome-link:hover{
+        color: var(--corsystem);
+        transition: 0.3s ease;
+    }
+
+    .menu-forlar.fechar .menu-links li a .nome-link{
+        opacity: 0;
+        pointer-events: none; /*para tirar qualquer evento do mouse */
+    }
+
+
+
+    /*ESTILO DO TITULO QUE FICA AO LADO */
+
+    .menu-forlar .menu-links li .sub-menu{
+        padding: 6px 6px 14px 60px;
+        margin-top: -10px;
+        background: transparent;
+        border-radius: 8px;
+        border: 1px solid #477be1;
+        display: none;
+    }
+
+
+    .menu-forlar .menu-links li.mostrarMenu .sub-menu{
+        display: block;
+    }
+
+    .menu-forlar .menu-links li .sub-menu a{
+        color: var(--background2);
+        font-size: 15px;
+        padding: 10px 0;
+        white-space: nowrap;
+        transition: all 0.3s ease;
+    }
+
+    .menu-forlar .menu-links li .sub-menu a:hover{
+        /* caso queira adicionar alguma cor ao passar o mouse por cima*/
+        color: var(--corsystem);
+    }
+
+    .menu-forlar.fechar .menu-links li .sub-menu{
+        position: absolute;
+        left: 61px;
+        top: -10%;
+        margin-top: 0;
+        padding: 10px 20px;
+        border-radius: 6px;
+        opacity: 0;
+        display: block;
+        pointer-events: none;
+        background: #FFFFFFdb;
+        backdrop-filter: 4px;
+        box-shadow: 1px 1px 4px rgb(0, 0, 0, 0.3);
+        backdrop-filter: blur(3px);
+        border-radius: 8px 8px 8px 0;
+        border: none;
+    }
+
+    .menu-forlar.fechar .menu-links li:hover .sub-menu{
+        top: 0;
+        opacity: 1;
+        pointer-events: auto;
+        transition: all 0.4s ease;
+    }
+
+    .menu-forlar .menu-links li .sub-menu .nome-link{
+        display: none;
+    }
+
+    .menu-forlar.fechar .menu-links li .sub-menu .nome-link{
+        font-size: 18px; 
+        opacity: 1;
+        display: block;
+    }
+
+    .menu-forlar .menu-links li .sub-menu.blank{
+        opacity: 1;
+        pointer-events: auto;
+        padding: 3px 20px 6px 16px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    /* barra de rolagem */ 
+    ::-webkit-scrollbar{
+        width: 10px;
+    }
+
+
+    /* estilização do perfil do usuário */
+    .menu-forlar .perfil-detalhes{
+        position: fixed;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 6px 0;
+        z-index: 999;
+        left: 0px;
+        width: 100%;
+        background: transparent;
+        border-top: 1px solid #477be1;
+        border-radius: 0 0px 8px 0;
+    }
+
+    .menu-forlar.fechar .perfil-detalhes{
+        overflow: hidden;
+    }
+
+    .menu-forlar .perfil-detalhes .perfil-content{
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-forlar .perfil-detalhes img{
+        height: 52px;
+        width: 52px;
+        object-fit: cover;
+        border-radius: 14px;
+        margin: 0 14px 0 12px;
+        background: var(--background2);
+        padding: 8px;
+    }
+
+    .menu-forlar .perfil-detalhes .perfil-nome,
+    .menu-forlar .perfil-detalhes .trabalho{
+        color: var(--background2); 
+        font-weight: 500; 
+        font-size: 18px;
+    }
+
+    .menu-forlar .perfil-detalhes .trabalho{
+        font-size: 12px;
+    }
+
+
+
+    /* ESTILO DO HAMBURGUER */
+
+    .burguer-content{
+        height: 60px;
+        display: flex;
+        align-items: center;
+        position: absolute;
+        right: -25px;
+        top: 15px;
+        z-index: 999; 
+        width: 100px;
+        transition: all 0.5s ease;
+        color: var(--background);
+    }
+
+    .menu-forlar.fechar ~ .burguer-content{
+        left: 78px; 
+        width: calc(100px - 78px);         /*faz o icone burguer acompanhar o moviment do menu */
+    }
+
+    .burguer-content .bx-menu{
+        margin: 0 15px;
+        cursor: pointer;
+        font-size: 50px;
+        
+    }
+
+</style>
+
+<body>
+    <div class="box-shadow"></div>
+
+
+    <div class="menu-forlar">
+
+        <!--LOGO DA FORLAR-->
+        <div class="logo-detalhes">
+            <img src="Imgs/logo.png" alt="logo sistema">
+        </div>
+
+        <!--HAMBURGUER MENU-FORLAR-->
+    <div class="burguer-content">
+        <i class='bx bx-menu'></i>
+    </div>
+
+        <!--INICIO - ITENS MENU-->
+        <ul class="menu-links">
+
+            <!--PRIMEIRO ITEM-->
+            <li>
+                <div class="div-conteudo-seta">
+                    <a href="#">
+                        <i class='bx bxs-dashboard'></i>
+                        <span class="nome-link">Painéis</span>
+                    </a>
+                    <i class='bx bxs-chevron-down seta'></i>
+                </div>
+                <ul class="sub-menu subMenuClass">
+                    <li><a class="nome-link" href="#">Painéis</a></li>
+                    <li><a href="/dashboard">Dashboard (em breve)</a></li>
+                    <li><a href="#">Tabela de Produtos (em breve)</a></li>
+                </ul>
+            </li>
+
+            <!-- SEGUNDO ITEM + DROPDOWN-->
+            <li>
+                <div class="div-conteudo-seta">
+                    <a href="#">
+                        <i class='bx bx-mail-send'></i>
+                        <span class="nome-link">Clientes</span>
+                    </a>
+                    <i class='bx bxs-chevron-down seta'></i>
+                </div>
+                <ul class="sub-menu subMenuClass">
+                    <li><a class="nome-link" href="#">Clientes</a></li>
+                    <li><a href="#">Contatos</a></li>
+                </ul>
+            </li>
+
+            <!--TERCEIRO ITEM -->
+            <!-- <li>
+                <div class="div-conteudo-seta">
+                    <a href="#">
+                        <i class='bx bxs-analyse'></i>
+                        <span class="nome-link">Ferramentas</span>
+                    </a>
+                    <i class='bx bxs-chevron-down seta'></i>
+                </div>
+                <ul class="sub-menu subMenuClass">
+                    <li><a class="nome-link" href="#">Ferramentas</a></li>
+                    <li><a href="#">Alterar produto</a></li>
+                    <li><a href="#">Criar produto</a></li>
+                    <li><a href="#">Excluir produto</a></li>
+                </ul>
+            </li> -->
+
+            <!--DÉCIMO ITEM-->
+           <!--  <li>
+                <a href="#">
+                    <i class='bx bx-cog'></i>
+                    <span class="nome-link">Configurações</span>
+                </a>
+                <ul class="sub-menu blank">
+                    <li><a class="nome-link" href="#">Configurações</a></li>
+                </ul>
+            </li> -->
+            
+            <!-- PERFIL DO USUÁRIO-->
+            <li>
+                <div class="perfil-detalhes">
+                    <div class="perfil-content">
+                        <img src="../Imgs/user.png" alt="Logo do Usuário" onclick="usuario()">
+                    </div>
+                    <div class="nome-trabalho">
+                        <div class="perfil-nome">
+                            <?php 
+
+                            class Menu {
+                                private $conexao;
+
+                                public function __construct() {
+                                    $dsn = "mysql:host=localhost;port=3306;dbname=sistema_ramon";
+    
+                                    try {
+                                        $this->conexao = new PDO($dsn, "ramon", "Ramon0912@05");
+                                    } catch (PDOException $e) {
+                                        die("Erro de conexão: " . $e->getMessage());
+                                    }
+                                }
+
+
+                                public function usuario() {
+                                    $sql = "SELECT User FROM users WHERE ID_User = 1"; // Puxa apenas o primeiro nome
+                                    $stmt = $this->conexao->prepare($sql);
+                                    $stmt->execute();
+                                    
+                                    $result = $stmt->fetch(PDO::FETCH_ASSOC); // Pega o resultado como um array associativo 
+                                    
+                                    echo htmlspecialchars($result['User']); 
+                                    }
+                            }
+
+                            $menu_dao = new Menu();
+                            $menu_dao->usuario();
+
+  
+                                
+                            ?>
+                        </div>
+                        <div class="trabalho">Vendedor</div>
+                    </div>
+                    <i class="bx bx-log-out" id="logout">
+
+                    </i>
+                </div>
+            </li>
+        </ul>
+        
+    </div>
+    <!--FIM SIDEBAR-->
+
+
+    <script src="jquery/dist/jquery.min.js"></script>
+
+    <script>
+
+        // logout
+        $(document).ready(function() {
+            $('#logout').on('click', function() {
+                window.location.href = '/logout';
+            })
+            
+        })
+
+
+        function usuario() {
+            window.location.href = '/perfil';
+        }
+
+        
+
+
+        // SCRIPT MOSTRAR O MENU APERTANDO NA SETA
+
+        $(document).ready(function () {
+            $('.menu-forlar .menu-links li').click(function () {
+
+                // Fecha todos os submenus abertos
+                $('.menu-forlar .menu-links li').not(this).removeClass('mostrarMenu'); // not(this) diz que a class nao vai ser removida desse, ou seja nao vai ser removido a class do item que for clicado
+
+                // Toggle para mostrar ou ocultar o submenu clicado
+                $(this).toggleClass('mostrarMenu');
+
+
+            });
+        });
+
+
+        //SCRIPT HAMBURGUER MENU
+        $(document).ready(function () {
+            let menu = $('.menu-forlar');
+            let menuBtnBurguer = $('.bx-menu');
+
+            menuBtnBurguer.on('click', function () {
+                menu.toggleClass('fechar');
+            });
+        });
+
+        // $(document).keydown((e)=>{
+        //     console.log(e)              // seta esquerda: 37 | seta direita: 39
+        // })
+
+        // abrir e fechar menu utilizando a tecla seta esquerda e fechar tecla seta direita
+        $(document).keydown((key) => {
+            let menuKey = $('.menu-forlar')
+            let btnBurguer = $('.bx-menu')
+
+            if (key.keyCode == 37) {
+                menuKey.toggleClass('fechar')
+            } else if (key.keyCode == 39) {
+                menuKey.removeClass('fechar')
+            }
+        })
+
+
+    </script>
+</body>
+
+</html>
