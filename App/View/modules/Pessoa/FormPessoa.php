@@ -118,46 +118,46 @@
     <div class="container">
 
         <fieldset>
-            <legend>Cadastro de Produto:</legend>
+            <legend>Register of Products:</legend>
             <form method="post" action="/pessoa/form/save">
-                <input type="hidden" value="<?= $model->ID_Produto ?? '' ?>" name="ID_Produto" autocomplete="off">
+                <input type="hidden" value="<?= $model->ID_Products ?? '' ?>" name="ID_Products" autocomplete="off">
 
                 <div class="campo-form">
-                    <label for="Nome">Nome: </label>
-                    <input style="width: 600px;" type="text" id="Nome" name="Nome" value="<?= $model->Nome ?? '' ?>" autocomplete="off">
+                    <label for="Name">Name: </label>
+                    <input style="width: 600px;" type="text" id="Name" name="Name" value="<?= $model->Name ?? '' ?>" autocomplete="off">
                 </div>
                     
                 <div class="campo-form">
-                    <label for="Codigo">Codigo: </label>
-                    <input style="width: 120px;" type="number" id="Codigo" name="Codigo" value="<?= $model->Codigo ?? '' ?>" autocomplete="off">
+                    <label for="Code">Code: </label>
+                    <input style="width: 120px;" type="number" id="Code" name="Code" value="<?= $model->Code ?? '' ?>" autocomplete="off">
                 </div>
 
                 <div class="campo-form">
-                    <label for="Unidade">Unidade: </label>
-                    <input style="width: 120px;" id="Unidade" name="Unidade" value="<?= $model->Unidade ?? '' ?>" type="text" autocomplete="off">
+                    <label for="Unit">Unit: </label>
+                    <input style="width: 120px;" id="Unit" name="Unit" value="<?= $model->Unit ?? '' ?>" type="text" autocomplete="off">
                 </div>
 
                 <div class="campo-form">
-                    <label for="Quantidade">Quantidade: </label>
-                    <input style="width: 120px" id="Quantidade" name="Quantidade" value="<?= $model->Quantidade ?? '' ?>" type="number" autocomplete="off">
+                    <label for="Amount">Amount: </label>
+                    <input style="width: 120px" id="Amount" name="Amount" value="<?= $model->Amount ?? '' ?>" type="number" autocomplete="off">
                 </div>
 
                 <div class="campo-form">
-                    <label for="Preco_Venda">Preço de Venda: </label>
-                    <input style="width: 120px;" type="text" id="Preco_Venda" name="Preco_Venda" value="<?= $model->Preco_Venda ?? ''?>" autocomplete="off">
+                    <label for="Sale_Price">Sale Price: </label>
+                    <input style="width: 120px;" type="text" id="Sale_Price" name="Sale_Price" value="<?= $model->Sale_Price ?? ''?>" autocomplete="off">
                 </div>
 
                 <div class="campo-form">
-                    <label for="Preco_Custo">Preço de Custo: </label>
-                    <input style="width: 120px;"type="text" id="Preco_Custo" name="Preco_Custo" value="<?= $model->Preco_Custo ?? '' ?>" autocomplete="off">
+                    <label for="Price_Cost">Price Cost: </label>
+                    <input style="width: 120px;"type="text" id="Price_Cost" name="Price_Cost" value="<?= $model->Price_Cost ?? '' ?>" autocomplete="off">
                 </div>
 
                 <div class="campo-form">
-                    <label for="Margem_Bruta">Margem Bruta: </label>
-                    <input style="width: 120px;" type="text" id="Margem_Bruta" name="Margem_Bruta" value="<?= $model->Margem_Bruta ?? '' ?>" autocomplete="off">
+                    <label for="Gross_Margin">Gross Margin: </label>
+                    <input style="width: 120px;" type="text" id="Gross_Margin" name="Gross_Margin" value="<?= $model->Gross_Margin ?? '' ?>" autocomplete="off">
                 </div>
 
-                <button class="btn-salvar" type="submit">Salvar</button>
+                <button class="btn-salvar" type="submit">Save</button>
             </form>
 
 

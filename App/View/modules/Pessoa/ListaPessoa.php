@@ -4,12 +4,14 @@
 // ini_set('display_startup_errors', 1); // Mostra erros de inicialização
 // error_reporting(E_ALL); // Relata todos os tipos de erros
 
+session_start();
 
     function numeroFormatado($valor) {
         $valorFormatado = number_format($valor, 2, ',', '');
 
         return $valorFormatado;
     }
+
 
 ?>
 
@@ -121,7 +123,11 @@
         text-decoration: none;
     }
 
-    .btn-cadastro{
+    .new-product-div{
+        margin-top: 20px;
+    }
+
+    .new-product-div .btn-cadastro{
         padding: 10px;
         margin-top: 50px;
         border: none;
@@ -135,8 +141,28 @@
         text-align: center;
     }
 
-    .btn-cadastro:hover {
+    .new-product-div .btn-cadastro:hover {
         background: #75b2fe;
+    }
+
+    p {
+        color: white;
+    }
+
+    .welcome-message-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .welcome-message-div a{
+        text-decoration: none;
+        color: white;
+        transition: color 0.3s ease;
+    }
+
+    .welcome-message-div a:hover{
+        color: #75b2fe;
     }
 
 </style>
@@ -144,8 +170,23 @@
 <body>
 
     <div class="corpo">
-        <a class="btn-cadastro" href="/pessoa/form">Novo Produto</a>
 
+        <div class="welcome-message-div">
+            <?php if (isset($_SESSION['User'])): ?>
+                <p>Bem vindo, <strong>
+                    <?= htmlspecialchars($_SESSION['User']->Username, ENT_QUOTES, 'UTF-8'); ?>
+                    </strong>
+                </p>
+                <a href="/logout" id="logout">Logout</a>
+            <?php endif; ?>
+
+
+            <div class="new-product-div">
+                <a class="btn-cadastro" href="/pessoa/form">Novo Produto</a>
+            </div>
+        </div>
+        
+        
         <div class="container">
 
             <?php 
@@ -159,30 +200,30 @@
                 <tr>
                     <th></th>
                     <th>ID</th>
-                    <th>Código</th>
-                    <th>Nome</th>
+                    <th>Code</th>
+                    <th>Name</th>
                     <th>Un</th>
-                    <th>Qtd</th>
-                    <th>Preço Venda</th>
-                    <th>Preço Custo</th>
-                    <th>Margem Bruta</th>
+                    <th>Amount</th>
+                    <th>Sale Price</th>
+                    <th>Price Cost</th>
+                    <th>Gross Margin</th>
                     <th>Total</th>
                 </tr>
                 <?php foreach ($model->rows as $item): ?>
                     <tr>
                         <td>
-                            <a href="/pessoa/delete?id=<?= $item->ID_Produto ?>" class="delete-btn"> <i class='bx bx-trash'></i> </a>
+                            <a href="/pessoa/delete?id=<?= $item->ID_Products ?>" class="delete-btn"> <i class='bx bx-trash'></i> </a>
                         </td>
-                        <td><?= $item->ID_Produto ?></td>
+                        <td><?= $item->ID_Products ?></td>
                         <td>
-                            <a class="nome-btn" href="/pessoa/form?id=<?= $item->ID_Produto ?>"><?= $item->Codigo ?></a>
+                            <a class="nome-btn" href="/pessoa/form?id=<?= $item->ID_Products ?>"><?= $item->Code ?></a>
                         </td>
-                        <td><?= $item->Nome ?></td>
-                        <td><?= $item->Unidade ?></td>
-                        <td><?= $item->Quantidade ?></td>
-                        <td>R$ <?= numeroFormatado($item->Preco_Venda); ?></td>
-                        <td>R$ <?= numeroFormatado($item->Preco_Custo); ?></td>
-                        <td>R$ <?= numeroFormatado($item->Margem_Bruta); ?></td>
+                        <td><?= $item->Name ?></td>
+                        <td><?= $item->Unit ?></td>
+                        <td><?= $item->Amount ?></td>
+                        <td>R$ <?= numeroFormatado($item->Sale_Price); ?></td>
+                        <td>R$ <?= numeroFormatado($item->Price_Cost); ?></td>
+                        <td>R$ <?= numeroFormatado($item->Gross_Margin); ?></td>
                         <td></td>
                     </tr>
 
@@ -203,7 +244,24 @@
     </div>
         
 
+    <script src="../jquery/dist/jquery.min.js">
+    
+        $("#logout").on('click', ()=> {
+    
+            $.ajax({
+                url: "/logout",
+                type: "POST",
+                success: function() {
+                    location.reload();
+                }
+            })
+        });
+    
+    
+    </script>
 
 </body>
+
+
 
 </html>

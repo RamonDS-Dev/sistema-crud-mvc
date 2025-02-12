@@ -3,28 +3,28 @@
 
 class PessoaModel {
 
-	public int $ID_Produto;
+	public int $ID_Products;
 	
-	public string $Nome;
+	public string $Name;
 
-	public int $Codigo;
+	public int $Code;
 
-	public string $Unidade;
+	public string $Unit;
 
-	public int $Quantidade;
+	public int $Amount;
 
-	public float $Preco_Venda;
+	public float $Sale_Price;
 
-	public float $Preco_Custo;
+	public float $Price_Cost;
 
-	public float $Margem_Bruta;
+	public float $Gross_Margin;
 
 	public $rows;
 
 	public function save() {
 		$dao = new PessoaDAO();
 
-		if(empty($this->ID_Produto)) {
+		if(empty($this->ID_Products)) {
 			$dao->insert($this);
 		} else {
 			$dao->update($this);
@@ -36,23 +36,23 @@ class PessoaModel {
 		$this->rows = $dao->select();
 
 		if(empty($this->rows)) {
-			die("Erro: nenhum dado retornado pelo DAO");
+			die("Erro: None data returned from DAO");
 		}
 	}
 
-	public function getById(int $ID_Produto) {
+	public function getById(int $ID_Products) {
 
 		$dao = new PessoaDAO();
 
-		$obj = $dao->selectById($ID_Produto);
+		$obj = $dao->selectById($ID_Products);
 
 		return ($obj) ? $obj : new PessoaModel();
 	}
 
-	public function delete(int $ID_Produto) {
+	public function delete(int $ID_Products) {
 		$dao = new PessoaDAO();
 
-		$dao->delete($ID_Produto);
+		$dao->delete($ID_Products);
 	}
 }
 

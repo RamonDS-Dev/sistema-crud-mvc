@@ -6,7 +6,7 @@ class PessoaDAO {
 	private $conexao;
 
 	public function __construct() {
-		$dsn = "mysql:host=localhost;port=3306;dbname=sistema_ramon";
+		$dsn = "mysql:host=localhost;port=3306;dbname=system_ramondsdev";
 
 		try {
 			$this->conexao = new PDO($dsn, "ramon", "Ramon0912@05");
@@ -27,48 +27,48 @@ class PessoaDAO {
 	}
 
 	public function insert(PessoaModel $model) {
-		$sql = "INSERT INTO Produtos (Nome, Codigo, Unidade, Quantidade, Preco_Venda, Preco_Custo, Margem_Bruta) VALUES (?, ?, ?, ?, ?, ?, ?) ";
+		$sql = "INSERT INTO SR_Produtos (Name, Code, Unit, Amount, Sale_Price, Price_Cost, Gross_Margin) VALUES (?, ?, ?, ?, ?, ?, ?) ";
 
 		$stmt = $this->conexao->prepare($sql);
 
-		$stmt->bindValue(1, $model->Nome);
-		$stmt->bindValue(2, $model->Codigo);
-		$stmt->bindValue(3, $model->Unidade);
-		$stmt->bindValue(4, $model->Quantidade);
-		$stmt->bindValue(5, $this->formatarNumerosBanco($model->Preco_Venda));
-		$stmt->bindValue(6, $this->formatarNumerosBanco($model->Preco_Custo));
-		$stmt->bindValue(7, $this->formatarNumerosBanco($model->Margem_Bruta));
+		$stmt->bindValue(1, $model->Name);
+		$stmt->bindValue(2, $model->Code);
+		$stmt->bindValue(3, $model->Unit);
+		$stmt->bindValue(4, $model->Amount);
+		$stmt->bindValue(5, $this->formatarNumerosBanco($model->Sale_Price));
+		$stmt->bindValue(6, $this->formatarNumerosBanco($model->Price_Cost));
+		$stmt->bindValue(7, $this->formatarNumerosBanco($model->Gross_Margin));
 
 		$stmt->execute();
 	}
 
 	public function update(PessoaModel $model) {
-		$sql = "UPDATE Produtos SET Nome=?, Codigo=?, Unidade=?, Quantidade=?, Preco_Venda=?, Preco_Custo=?, Margem_Bruta=? WHERE ID_Produto=? ";
+		$sql = "UPDATE SR_Produtos SET Name=?, Code=?, Unit=?, Amount=?, Sale_Price=?, Price_Cost=?, Gross_Margin=? WHERE ID_Produto=? ";
 
 		$stmt = $this->conexao->prepare($sql);
 
 
-		$PrecoVenda = $this->formatarNumerosBanco($model->Preco_Venda);
-		$PrecoCusto = $this->formatarNumerosBanco($model->Preco_Custo);
-		$MargemBruta = $this->formatarNumerosBanco($model->Margem_Bruta);
+		$Sale_Price = $this->formatarNumerosBanco($model->Sale_Price);
+		$Price_Cost = $this->formatarNumerosBanco($model->Price_Cost);
+		$Gross_Margin = $this->formatarNumerosBanco($model->Gross_Margin);
 
 
-		$stmt->bindValue(1, $model->Nome);
-		$stmt->bindValue(2, $model->Codigo);
-		$stmt->bindValue(3, $model->Unidade);
-		$stmt->bindValue(4, $model->Quantidade);
-		$stmt->bindValue(5, $PrecoVenda);
-		$stmt->bindValue(6, $PrecoCusto);
-		$stmt->bindValue(7, $MargemBruta);
+		$stmt->bindValue(1, $model->Name);
+		$stmt->bindValue(2, $model->Code);
+		$stmt->bindValue(3, $model->Unit);
+		$stmt->bindValue(4, $model->Amount);
+		$stmt->bindValue(5, $Sale_Price);
+		$stmt->bindValue(6, $Price_Cost);
+		$stmt->bindValue(7, $Gross_Margin);
 		
 
-		$stmt->bindValue(8,$model->ID_Produto);
+		$stmt->bindValue(8,$model->ID_Products);
 
 		$stmt->execute();
 	}
 
 	public function select() {
-		$sql = "SELECT * FROM Produtos";
+		$sql = "SELECT * FROM SR_Produtos";
 		$stmt = $this->conexao->prepare($sql);
 		$stmt->execute();
 
@@ -84,7 +84,7 @@ class PessoaDAO {
 	public function selectById(int $id) {
 		include_once 'Model/PessoaModel.php';
 
-		$sql = "SELECT * FROM Produtos WHERE ID_Produto = ?";
+		$sql = "SELECT * FROM SR_Produtos WHERE ID_Products = ?";
 		$stmt = $this->conexao->prepare($sql);
 		$stmt->bindValue(1, $id);
 		$stmt->execute();
@@ -93,7 +93,7 @@ class PessoaDAO {
 	}
 
 	public function delete(int $id) {
-		$sql = "DELETE FROM Produtos WHERE ID_Produto = ?";
+		$sql = "DELETE FROM SR_Produtos WHERE ID_Products = ?";
 
 		$stmt = $this->conexao->prepare($sql);
 		$stmt->bindValue(1, $id);

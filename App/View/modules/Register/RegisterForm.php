@@ -1,7 +1,12 @@
+<?php 
+    session_start();
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login</title>
+    <title>Register</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -84,21 +89,16 @@
 
     <div class="container">
         <fieldset>
-            <legend>Login</legend>
-            <form method="post" action="/login/authenticate">
+            <legend>Register</legend>
+            <form method="post" action="/register/createAcc">
 
-                <label for="User">Username:</label>
-                <input type="text" id="User" name="User" autocomplete="off">
+                <label for="Username">Username:</label>
+                <input type="text" id="Username" name="Username" required autocomplete="off">
 
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password" >
+                <label for="Password">Password:</label>
+                <input type="Password" id="Password" name="Password" required>
 
-                <?php if (isset($_GET['error']) && $_GET['error'] === 'invalid_credentials'): ?>
-                    <p style="color:red;">Username or Password wrong!</p>
-                <?php endif; ?>
-
-                <button type="submit">Login</button>
-                <a href="/register" id="new-reg">Register</a>
+                <button type="submit">Register</button>
                 </br>
             </form>
         </fieldset>

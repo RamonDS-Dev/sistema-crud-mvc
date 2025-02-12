@@ -33,15 +33,15 @@
 
 			$model = new PessoaModel();
  
-			$model->ID_Produto = (int)$_POST['ID_Produto'];
+			$model->ID_Products = (int)$_POST['ID_Products'];
 
-			$model->Nome = htmlspecialchars($_POST['Nome']);
-			$model->Codigo = intval($_POST['Codigo']);
-			$model->Unidade = htmlspecialchars($_POST['Unidade']);
-			$model->Quantidade = intval($_POST['Quantidade']);
-			$model->Preco_Venda = self::formatarDecimal($_POST['Preco_Venda']);
-			$model->Preco_Custo = self::formatarDecimal($_POST['Preco_Custo']);
-			$model->Margem_Bruta = self::formatarDecimal($_POST['Margem_Bruta']);
+			$model->Name = htmlspecialchars($_POST['Name']);
+			$model->Code = intval($_POST['Code']);
+			$model->Unit = htmlspecialchars($_POST['Unit']);
+			$model->Amount = intval($_POST['Amount']);
+			$model->Sale_Price = self::formatarDecimal($_POST['Sale_Price']);
+			$model->Price_Cost = self::formatarDecimal($_POST['Price_Cost']);
+			$model->Gross_Margin = self::formatarDecimal($_POST['Gross_Margin']);
 
 			// echo "<pre>";
 			// print_r($_POST);

@@ -21,6 +21,7 @@ class LoginModel {
 	}
 
 
+	// Quando authenticate() é chamado, ele usa $this->User e $this->password, que contêm os valores definidos pelos setters.
 	public function authenticate() {
 		$dao = new LoginDAO();
 		return $dao->authenticate($this->User, $this->password);

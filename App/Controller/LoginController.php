@@ -14,7 +14,7 @@ class LoginController {
 
 		if($user) {
 			session_start();
-			$_SESSION['user'] = $user; // armazena o usuario na sessão
+			$_SESSION['User'] = $user; // armazena o usuario na sessão
 			header("Location: /pessoa");
 		} else {
 			header("Location: /login?erro=invalid_credentials");

@@ -4,41 +4,49 @@ $url = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 // midleware simples para proteger as rotas
 
-// function requireLogin() {
+function requireLogin() {
 
-// 	session_start();
+	session_start();
 
-// 	if(!isset($_SESSION['user'])) {
-// 		header("Location: /login");
-// 		exit;
-// 	}
-// }
+	if(!isset($_SESSION['User'])) {
+		header("Location: /login");
+		exit;
+	}
+}
 
 switch($url) {
 	case '/':
-		// requireLogin();
+		requireLogin();
 		PessoaController::index();
 	break;
 
-	// case '/login':
-	// 	LoginController::loginForm();
-	// break;
+	case '/login':
+		LoginController::loginForm();
+	break;
 
-	// case '/login/authenticate':
-	// 	LoginController::authenticate();
-	// break;
+	case '/login/authenticate':
+		LoginController::authenticate();
+	break;
 
-	// case '/logout':
-	// 	LoginController::logout();
-	// break;
+	case '/logout':
+		LoginController::logout();
+	break;
+
+	case '/register':
+		RegisterController::registerForm();
+	break;
+
+	case '/register/createAcc':
+		RegisterController::createAcc();
+	break;
 
 	case '/pessoa':
-		// requireLogin();
+		requireLogin();
 		PessoaController::index();
 	break;
 
 	case '/pessoa/form':
-		// requireLogin();
+		requireLogin();
 		PessoaController::form();
 	break;
 
