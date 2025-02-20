@@ -134,6 +134,7 @@ session_start();
         background: #477be1;
         color: white;
         transition: background 0.3s ease;
+        transition: color 0.3s ease;
         border-radius: 5px;
         cursor: pointer;
         width: 250px;
@@ -143,6 +144,7 @@ session_start();
 
     .new-product-div .btn-cadastro:hover {
         background: #75b2fe;
+        color: black;
     }
 
     p {
@@ -215,10 +217,9 @@ session_start();
                             <a href="/pessoa/delete?id=<?= $item->ID_Products ?>" class="delete-btn"> <i class='bx bx-trash'></i> </a>
                         </td>
                         <td><?= $item->ID_Products ?></td>
-                        <td>
-                            <a class="nome-btn" href="/pessoa/form?id=<?= $item->ID_Products ?>"><?= $item->Code ?></a>
+                        <td><?= $item->Code ?><td>
+                            <a class="nome-btn" href="/pessoa/form?id=<?= $item->ID_Products ?>"><?= $item->Name ?></a>
                         </td>
-                        <td><?= $item->Name ?></td>
                         <td><?= $item->Unit ?></td>
                         <td><?= $item->Amount ?></td>
                         <td>R$ <?= numeroFormatado($item->Sale_Price); ?></td>

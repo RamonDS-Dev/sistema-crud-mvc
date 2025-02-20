@@ -43,7 +43,7 @@ class PessoaDAO {
 	}
 
 	public function update(PessoaModel $model) {
-		$sql = "UPDATE SR_Produtos SET Name=?, Code=?, Unit=?, Amount=?, Sale_Price=?, Price_Cost=?, Gross_Margin=? WHERE ID_Produto=? ";
+		$sql = "UPDATE SR_Produtos SET Name=?, Code=?, Unit=?, Amount=?, Sale_Price=?, Price_Cost=?, Gross_Margin=? WHERE ID_Products=? ";
 
 		$stmt = $this->conexao->prepare($sql);
 

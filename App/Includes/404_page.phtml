@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    <!--FONT-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Parkinsans:wght@300..800&display=swap" rel="stylesheet">
+
+
+
+    <style>
+    *{
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: var(--font);
+    }
+
+    :root{
+        --background: #477be1;
+        --background2: #477be1;
+        --corsystem: #00223c;
+        --cinzaforlar: #9ea6b5ff;
+        --font: "Parkinsans", sans-serif;
+    }
+
+    body{
+        background: #262835;
+        color: white;
+        overflow: hidden;
+        font-family: "Parkinsans", sans-serif;
+    }
+
+    .box-shadow{
+        background: radial-gradient(circle, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0.7) 100%);
+        position: fixed;
+        z-index: -1;
+        width: 100vw;
+        height: 100vh;
+        left: 0;
+        top: 0;
+    }
+
+    .container{
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .texts {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .texts a {
+        padding: 10px;
+        border: none;
+        background: #477be1;
+        color: white;
+        transition: background 0.3s ease;
+        border-radius: 5px;
+        cursor: pointer;
+        width: 50%;
+        margin-top: 30px;
+        text-align: center;
+        text-decoration: none;
+    }
+
+    .texts a:hover{
+        background: #75b2fe;
+    }
+    </style>
+</head>
+
+<body>
+
+<div class="box-shadow"></div>
+
+<div class="container">
+
+    <div class="texts">
+        <h1>404 - Page not found</h1>
+        <p>This page don't exists. </p>
+        <a href="/pessoa">Back to Home</a>
+    </div>
+
+</div>
+
+
+</body>
+
+</html>

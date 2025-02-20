@@ -58,8 +58,13 @@ switch($url) {
 		PessoaController::delete();
 	break;
 
+	case '/dashboard':
+		requireLogin();
+		DashController::handleDashboard();
+	break;
+
 	default:
-		echo "Erro 404 - Página Inexistente";
+		include __DIR__ . '/Includes/404_page.phtml';
 	break;
 }
 
